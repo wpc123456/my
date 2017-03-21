@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/lib/bootstrap/dist/css/bootstrap.css'/>
+    <link rel="stylesheet" href="/css/reg.css"/>
+    <link rel="stylesheet" href="/css/detail.css"/>
+    <style>
+        header{
+            position: fixed;
+            top: 0px;
+            left: 90px;
+            z-index: 999;
+        }
+
+        body {
+            position: relative;
+            background-image: url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490188830&di=7375bc2183ed43ac68d752abd4af9a12&imgtype=jpg&er=1&src=http%3A%2F%2Ftupian.enterdesk.com%2F2012%2F1031%2Fzyz%2F02%2Fstar%2520%286%29.jpg);
+            background-size: 100% 100%;
+            padding-top: 50px;
+        }
+
+        #nav {
+            background-image: url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489575554338&di=1ea6fd873eb9a11cb3156ca9f7e1b029&imgtype=0&src=http%3A%2F%2Fs15.sinaimg.cn%2Fbmiddle%2F4ca2935ac265894b88ade");
+            background-size: 100% 100%;
+        }
+
+        #nav a {
+            color: greenyellow;
+            font-weight: 900;
+        }
+
+        #nav li a:hover {
+            color: white;
+        }
+
+        #headPhoto .col-md-3 img {
+            width: 100%;
+            height: 200px;
+            margin: 0px auto;
+            border-radius: 50%;
+        }
+
+        #headPhoto .col-md-3 p {
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            color: white;
+        }
+
+        #headPhoto .col-md-9 #masonry {
+            width: 840px;
+        }
+
+        #headPhoto .media {
+            width: 250px;
+            margin-left: 10px;
+            margin-top: 10px;
+            border: solid 2px bisque;
+        }
+
+        #headPhoto .media .media-body, #headPhoto .media .media-bottom {
+            color: white;
+        }
+        #headPhoto .media .media-body{
+            width: 140px;
+            height: 94px;
+
+        }
+        #headPhoto .media .media-body .show{
+            width: 140px;
+            height: 60px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #headPhoto .media > img {
+            width: 100%;
+            transition: all 1s linear;
+        }
+        #headPhoto .media > img:hover {
+            transform: scale(1.4);
+        }
+        #box{
+            border: solid 1px transparent;
+            /*//overflow: hidden;*/
+        }
+
+        #masonry {
+            position: relative;
+            
+        }
+
+        #masonry .media {
+            position: absolute;
+            border: solid 2px lightseagreen;
+            text-align: center;
+            padding: 10px;
+            left: 0px;
+            top: 0;
+            overflow: hidden;
+        }
+
+        .media > img {
+            width: 200px;
+            height: auto;
+            display: block;
+            border: 0
+        }
+
+        .navbar-header a, .nav.navbar-nav li a {
+            text-align: center;
+        }
+
+        .alert.alert-warning.view {
+            position: fixed;
+            top: 500px;
+            left: 0px;
+        }
+
+        .show pre{
+            background-color:transparent;
+            color: white;
+            padding: 0px;
+            border: none;
+        }
+
+        /*//分页*/
+        .pagination{
+            position: fixed;
+            bottom: 0px;
+            right: 0px;
+        }
+        
+        .pagination li{
+            background: none;
+        }
+        .pagination li a{
+            color:white;
+            background-color: transparent;
+            width: 34px;
+            height: 34px;
+            line-height: 34px;
+            text-align: center;
+            padding: 0px;
+        }
+
+    </style>
+</head>
+<body>
+<script src="/lib/jquery/dist/jquery.min.js"></script>
+<script src="/lib/jquery/dist/jquery.masonry.min.js"></script>
+<script src="/lib/jquery/dist/jquery.js"></script>
+<script src="/lib/bootstrap/dist/js/bootstrap.js"></script>
+<header class="container">
+    <nav class="navbar navbar-inverse" role="navigation" id="nav">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">IT天下</a>
+        </div>
+        <div>
+            <ul class="nav navbar-nav">
+                <%if(users){%>
+                <li><a href="/article/home">我的主页</a></li>
+                <li><a href="/article/add">发表文章</a></li>
+                <li><a href="/users/logout">退出</a></li>
+                <%}else{%>
+                <li class=""><a href="/users/login">登陆</a></li>
+                <li><a href="/users/reg">注册</a></li>
+                <%}%>
+            </ul>
+            <form action="/?keyword=<%=keyword%>" method="get" class="navbar-form navbar-right" role="search">
+                <div class="form-group">
+                    <input name="keyword" type="text" class="form-control" placeholder="Search" value="<%=keyword%>">
+                </div>
+
+                <button type="submit" class="btn btn-default">
+                    Search
+                </button>
+            </form>
+        </div>
+    </nav>
+</header>
+
+
+<%if(success.length){%>
+<div class="alert alert-warning view" style="width:1349px">
+    <a href="#" class="close" data-dismiss="alert">
+        &times;
+    </a>
+    <%=success%>
+</div>
+<%}
+if(error.length){%>
+<div class="alert alert-warning view" style="width:1349px">
+    <a href="#" class="close" data-dismiss="alert">
+        &times;
+    </a>
+    <%=error%>
+</div>
+<%}%>
+

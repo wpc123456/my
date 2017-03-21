@@ -1,0 +1,11 @@
+#form{
+    margin-top: 40px;
+}
+#form label{
+    opacity: 0.8;
+    color: white;
+}
+#form .col-sm-4 input{
+    opacity: 0.8;
+    color:black;
+}

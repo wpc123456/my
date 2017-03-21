@@ -1,0 +1,99 @@
+<%-include ../include/header.html%>
+<div class="container container-content">
+    <div class="row" id="headPhoto">
+        <div class="col-md-3">
+            <img src="http://t1.niutuku.com/960/21/21-262743.jpg" alt=""/>
+
+            <%if(users) {%>
+            <p><%=users.username%>的博客</p>
+            <%}else {%>
+            <p>IT天下</p>
+            <%}%>
+
+        </div>
+        <div class="col-md-9">
+            <div id="box">
+                <div id="masonry" class="container-fluid" style="width:840px;">
+                    <%article.forEach(function(article,index){%>
+                    <%if(users) {
+                    if(article.users.username == users.username) {%>
+                    <div class="media">
+                        <a class="pull-left" href="#">
+                            <img class="media-object" src="<%=article.users.avatar%>"
+                                 alt="媒体对象">
+                        </a>
+
+                        <div class="media-body">
+                            <a href="/article/detail/<%=article._id%>"><h4 class="media-heading"><%=article.title%></h4></a>
+                            <div class="show">
+                                <%-article.content%>
+                            </div>
+                            <!--
+                               减号显示原有的html标签
+                            -->
+                        </div>
+                        <img src="<%=article.add%>" alt=""/>
+                        <img src="<%=article.poster%>" alt=""/>
+
+                        <div class="media-bottom">
+                            <span>作者：<%=users.username%></span>
+                            <span>时间：<%=article.createAt.toLocaleString()%></span>
+                        </div>
+                    </div>
+                    <%}
+                    }else {%>
+
+                    <div class="media">
+                        <a class="pull-left" href="#">
+                            <img class="media-object" src="<%=article.users.avatar%>"
+                                 alt="媒体对象">
+                        </a>
+
+                        <div class="media-body">
+                            <a href="/article/detail/<%=article._id%>"><h4 class="media-heading"><%=article.title%></h4></a>
+                            <div class="show">
+                                <%-article.content%>
+                            </div>
+
+                            <!--
+                               减号显示原有的html标签
+                            -->
+                        </div>
+                        <img src="<%=article.add%>" alt=""/>
+                        <img src="<%=article.poster%>" alt=""/>
+
+                        <div class="media-bottom">
+                            <span>作者：<%=article.users.username%></span>
+                            <span>时间：<%=article.createAt.toLocaleString()%></span>
+                        </div>
+                    </div>
+                    <%}%>
+
+
+                    <%})%>
+                </div>
+            </div>
+
+            <!--<ul class="pagination">-->
+                <!--<li><a href="/?keyword=<%=keyword%>&pageNum=<%=(pageNum>1 ? pageNum - 1 : 1)%>&pageSize=<%=pageSize%>">&laquo;</a></li>-->
+
+                <!--<%for(var i=1; i<=totalPage; i++) {%>-->
+
+                <!--<li class="<%=((pageNum == i) ? 'active' : '')%>">-->
+                    <!--<a href="/?keyword=<%=keyword%>&pageNum=<%=i%>&pageSize=<%=pageSize%>"><%=i%></a>-->
+                <!--</li>-->
+
+                <!--<%}%>-->
+
+
+                <!--<li><a href="/?keyword=<%=keyword%>&pageNum=<%=(pageNum<totalPage ? pageNum + 1 : totalPage)%>&pageSize=<%=pageSize%>">&raquo;</a></li>-->
+            <!--</ul>-->
+
+        </div>
+    </div>
+</div>
+
+<%-include ../include/footer.html%>
+
+
+

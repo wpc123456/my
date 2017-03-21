@@ -1,0 +1,69 @@
+<%-include ../include/header.html%>
+
+<div class="panel panel-default container">
+    <div class="panel-heading"><%=article.title%></div>
+    <div class="panel-body">
+        <p>
+            <%=article.content%>
+        </p>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <img src="<%=article.add%>" alt="" style="width:50%"/>
+        </li>
+        <li class="list-group-item">
+
+            <a class="comment">评论（0）</a>
+            <a class="assist">赞（0）</a>
+
+            <a>浏览（<%=article.showCount%>）</a>
+        </li>
+        <li class="list-group-item area">
+            <form role="form" method="post" action="/article/detail">
+                <div class="form-group">
+                    <label for="comment">名称</label><br/>
+                    <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-default publish">发表</button>
+            </form>
+
+
+        </li>
+        <%if(users && article.users.username == users.username){%>
+        <li class="list-group-item">
+            <div class="btn-group">
+                <button type="button" class="btn btn-info">
+                    <a href="/article/update/<%=article._id%>">编辑</a>
+                </button>
+                <button type="button" class="btn btn-danger">
+                    <a href="/article/remove/<%=article._id%>">删除</a>
+                </button>
+            </div>
+        </li>
+
+
+        <%}%>
+    </ul>
+</div>
+<div class="container comment_list">
+    <div class="media">
+        <a class="pull-left" href="#">
+            <img class="media-object" src="/wp-content/uploads/2014/06/64.jpg"
+                 alt="媒体对象">
+        </a>
+
+        <div class="media-body">
+            <h4 class="media-heading">媒体标题</h4>
+            这是一些示例文本。这是一些示例文本。
+            这是一些示例文本。这是一些示例文本。
+            这是一些示例文本。这是一些示例文本。
+            这是一些示例文本。这是一些示例文本。
+            这是一些示例文本。这是一些示例文本。
+        </div>
+    </div>
+</div>
+
+
+
+<%-include ../include/footer.html%>
