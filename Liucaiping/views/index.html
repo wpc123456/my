@@ -1,0 +1,70 @@
+<%-include include/header.html%>
+
+<div class="container-fluid">
+<div class="row">
+    <div class="col-md-3">
+        <div class="leftOne">
+            <img src="images/20140821203358_SZCB8.jpeg" alt=""/>
+        </div>
+        <div class="leftTwo">
+            <img src="images/81.jpg" alt=""/>
+        </div>
+    </div>
+    <div class="col-md-9 right" id="box">
+        <div class="rightOne">
+            <i>LET YOUR MIND SURFIING</i>
+        </div>
+        <div class="rightTwo">
+        <%articles.forEach(function(article, index){%>
+        <div class="media">
+            <div class="media-left">
+                <a href="#">
+                    <img class="media-object" src="<%=article.user.avatar%>" alt="...">
+                </a>
+            </div>
+            <div class="media-body">
+                <a href="/article/detail?id=<%=article._id%>"><h4 class="media-heading"><%=article.title%></h4></a>
+                <p><%-article.content%></p>
+                <%if(article.poster){%>
+                <img style="width:150px;height:100px" src="<%=article.poster%>" alt=""/>
+                <%}%>
+            </div>
+            <div class="media-bottom">
+                <span>作者：<%=article.user.username%></span>
+                |
+                <span>时间：<%=article.createAt.toLocaleString()%></span>
+            </div>
+        </div>
+        <%})%>
+        </div>
+    </div>
+</div>
+</div>
+<!--页码区域-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 page">
+            <nav>
+                <ul class="pagination">
+                    <li>
+                        <a href="/?keyword=<%=keyword%>&pageNum=<%=(pageNum>1?pageNum-1:1)%>&pageSize=<%=pageSize%>" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <%for (var i=1; i<=totalPage; i++){%>
+                    <!-- 当pageNum==i时，显示点击状态-->
+                    <li class="<%=((pageNum==i) ? 'active': '')%>"><a href="/?keyword=<%=keyword%>&pageNum=<%=i%>&pageSize=<%=pageSize%>"><%=i%></a></li>
+                    <%}%>
+
+                    <li>
+                        <a href="/?keyword=<%=keyword%>&pageNum=<%=(pageNum<totalPage?pageNum+1:totalPage)%>&pageSize=<%=pageSize%>" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+</div>
+<%-include include/footer.html%>
